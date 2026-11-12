@@ -124,9 +124,6 @@ You use a put when you think the price will **go down**, or when you want protec
 | Maturity / expiry | The date the contract ends | In one month |
 | Buyer (long) | Pays the fee and holds the right. Loss is limited to the fee. | You |
 | Seller (short / writer) | Receives the fee and must honour the deal if the buyer uses it. Gain is limited to the fee, loss can be large. | The other side |
-| In the money | Using the option today would be worth something | Call with S<sub>T</sub> > K |
-| At the money | Market price equals the strike | S<sub>T</sub> = K |
-| Out of the money | The option is not worth using | Call with S<sub>T</sub> < K |
 
 The **seller is the exact opposite of the buyer**. If the buyer gains $15, the seller loses $15. If the buyer loses the $5 fee, the seller keeps it.
 
@@ -168,7 +165,7 @@ The **seller is the exact opposite of the buyer**. If the buyer gains $15, the s
 | 98 | 2 | -2 | +2 |
 | 110 | 0 | -4 (max loss) | +4 (max gain) |
 
-Note the 102 and 98 rows: the option is in the money, but the buyer still loses because the payoff is smaller than the premium.
+Note the 102 and 98 rows: the option pays something, but the buyer still loses because the payoff is smaller than the premium.
 
 ---
 
@@ -197,7 +194,6 @@ The strike and market price are shared, so you can compare a call and a put on t
 
 For **each** of the call and the put:
 
-- Whether the option is in, at or out of the money
 - **Buyer** and **seller** profit or loss, shown with equal weight, plus each side's maximum gain and maximum loss
 - Payoff at maturity, break-even price and the premium
 - A payoff graph
@@ -246,10 +242,9 @@ Hover over a graph to see the payoff, buyer and seller values at that price. Cli
 
 | Test | Inputs | Expected result |
 |---|---|---|
-| Call, in the money | K 100, call premium 5, market 120 | Payoff 20, buyer +15, seller -15, break-even 105 |
-| Put, in the money | K 100, put premium 4, market 80 | Payoff 20, buyer +16, seller -16, break-even 96 |
-| Call, out of the money | K 100, call premium 5, market 90 | Payoff 0, buyer -5, seller +5 |
-| At the money | K 100, market 100 | Both options show "At the money" |
+| Call, price above strike | K 100, call premium 5, market 120 | Payoff 20, buyer +15, seller -15, break-even 105 |
+| Put, price below strike | K 100, put premium 4, market 80 | Payoff 20, buyer +16, seller -16, break-even 96 |
+| Call, price below strike | K 100, call premium 5, market 90 | Payoff 0, buyer -5, seller +5 |
 | Bad input | Blank field or strike 0 | Red error message, no crash |
 
 ### Quick self-test (call, K = 100, premium 5)
@@ -271,7 +266,7 @@ options-visualizer/
 │   ├── App.jsx           Inputs, validation, option panels, scenario table
 │   ├── App.css           Styles
 │   ├── PayoffChart.jsx   Chart.js payoff graph for one option
-│   ├── options.js        Calculations: payoff, optionResult, limits, moneyness
+│   ├── options.js        Calculations: payoff, optionResult, limits
 │   └── options.test.js   Unit tests for the calculations
 ├── package.json
 └── vite.config.js

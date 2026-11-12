@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import PayoffChart from './PayoffChart'
-import { optionResult, moneyness, limits } from './options'
+import { optionResult, limits } from './options'
 import './App.css'
 
 const fmt = (n) => (Number.isFinite(n) ? n.toFixed(2) : 'Unlimited')
@@ -120,7 +120,6 @@ function OptionPanel({ kind, strike, premium, spot }) {
     <section className={`panel ${kind}`}>
       <header className="panel-head">
         <h2>{kind === 'call' ? 'Call option' : 'Put option'}</h2>
-        <span className="status">{moneyness(kind, strike, spot)}</span>
       </header>
 
       <div className="sides">

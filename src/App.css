@@ -80,7 +80,6 @@ body {
 
 .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
 .panel-head h2 { margin: 0; font-size: 1.1rem; font-weight: 650; color: var(--accent); }
-.status { font-size: .85rem; color: var(--muted); }
 
 /* buyer and seller results, same size and weight */
 .sides { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 8px; background: var(--tint); border: 1px solid var(--line); }
